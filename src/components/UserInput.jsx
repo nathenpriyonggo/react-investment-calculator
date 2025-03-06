@@ -1,24 +1,8 @@
 import { useState } from "react"
 
-export default function UserInput() {
-    const [ userInput, setUserInput ] = useState({
-        initialInvestment: 10000,
-        annualInvestment: 1200,
-        expectedReturn: 6,
-        duration: 10
-    });
-
-    function handleChange(event) {
-        setUserInput((prev) => {
-            return {
-                ...prev,
-                [event.target.name]: event.target.value
-            }
-        })
-    }
-
+export default function UserInput({ onChange, userInput }) {
+    
     return (
-
         <section id="user-input">
             <div className="input-group">
                 <p>
@@ -30,7 +14,7 @@ export default function UserInput() {
                         value={userInput.initialInvestment} 
                         type="number" 
                         required 
-                        onChange={handleChange}
+                        onChange={onChange}
                     />
                 </p>
                 <p>
@@ -42,7 +26,7 @@ export default function UserInput() {
                         value={userInput.annualInvestment} 
                         type="number" 
                         required 
-                        onChange={handleChange}
+                        onChange={onChange}
                     />
                 </p>
             </div>
@@ -56,7 +40,7 @@ export default function UserInput() {
                         value={userInput.expectedReturn} 
                         type="number" 
                         required 
-                        onChange={handleChange}
+                        onChange={onChange}
                     />
                 </p>
                 <p>
@@ -68,7 +52,7 @@ export default function UserInput() {
                         value={userInput.duration} 
                         type="number" 
                         required 
-                        onChange={handleChange}
+                        onChange={onChange}
                     />
                 </p>
             </div>

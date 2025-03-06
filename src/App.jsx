@@ -6,12 +6,38 @@ import Results from "./components/Results"
 
 
 function App() {
+  
+  const [ userInput, setUserInput ] = useState({
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10
+  });
+  const validInput = userInput.duration > 0;
+  
+  
+  function handleChange(event) {
+    setUserInput((prev) => {
+        return {
+            ...prev,
+            [event.target.name]: +event.target.value
+        }
+    })
+  }
 
   return (
     <>
       <Header />
-      <UserInput />
-      <Results />
+      <UserInput
+        userInput={userInput}
+        onChange={handleChange}
+      />
+      {validInput && <Results input={userInput}/>}
+      {!validInput && 
+        <p className="center">
+          Please enter a duration greater than zero.
+        </p>
+      }
     </>
   )
 }
